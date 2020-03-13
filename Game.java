@@ -10,16 +10,17 @@ import javafx.scene.paint.Color;
 import javafx.animation.Animation;
 import javafx.animation.Timeline;
 import javafx.animation.KeyFrame;
+import javafx.event.EventHandler;
 import javafx.util.Duration;
 import java.util.ArrayList;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import javafx.scene.text.Font;
 import javafx.scene.control.Button;
-import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.event.ActionEvent;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.input.MouseEvent;
 
 /*	
  * //
@@ -32,6 +33,7 @@ public class Game extends Application {
 
     public static VBox title = new VBox();
     public static StackPane root = new StackPane();
+    public static Rectangle Start;
     
     //Player[] players = new Players[2];
 	public static void main(String[] args) {
@@ -51,8 +53,9 @@ public class Game extends Application {
         //START BUTTON
         StackPane stBtn= new StackPane();
         stBtn.setPrefSize(200,100);
-        Rectangle Start = new Rectangle(200,100);
+        Start = new Rectangle(200,100);
         Start.setFill(Color.GREEN);
+        
         Text stText = new Text();
         stText.setText("START");
         stText.setFont(Font.font("Century Gothic", 30));
@@ -61,7 +64,13 @@ public class Game extends Application {
         stBtn.getChildren().addAll(Start,stText);
         title.getChildren().add(stBtn);
         title.setAlignment(Pos.CENTER);
-       
+
+        title.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                System.out.print("Working");
+            }
+        });
         
     //-------------------------------------------------------------------------
         
@@ -79,16 +88,14 @@ public class Game extends Application {
         root.getChildren().add(playFieldHolder);
         
 		primaryStage.setScene(new Scene(root, 1000, 600));
-		primaryStage.show();
+        primaryStage.show();
+        
     }
     //METHODS
 	public static void startAnimation() {
 		
 	}
 
-	public static void doSomething() {
-		
-	}
 
 	
 }
